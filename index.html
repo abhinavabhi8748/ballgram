@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ballgram</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>⚽ Ballgram ⚽</h1>
+        <p>Where the Real Ballers Meet</p>
+    </header>
+
+<main>
+
+    <!-- Football Idol Voting Card -->
+    <div class="post">
+        <h2>⚽ Who is your Football Idol?</h2>
+
+        <button class="btn" onclick="vote('ronaldo')">
+            Cristiano Ronaldo (<span id="ronaldo">0</span>)
+        </button>
+
+        <button class="btn" onclick="vote('messi')">
+            Lionel Messi (<span id="messi">0</span>)
+        </button>
+
+        <button class="btn" onclick="vote('neymar')">
+            Neymar Jr (<span id="neymar">0</span>)
+        </button>
+
+        <button class="btn" onclick="vote('others')">
+            Others (<span id="others">0</span>)
+        </button>
+    </div>
+
+    <!-- About Ballgram Card -->
+    <div class="post">
+        <h2>ℹ️ What is Ballgram?</h2>
+
+        <button id="aboutBtn" class="btn" onclick="toggleAbout()">
+            Show Answer
+        </button>
+
+        <p id="about" style="display: none;">
+            ⚽ Ballgram is a football community built by a football fan for football fans.
+            Here you can vote, discuss football, share opinions, and celebrate the beautiful game together.
+        </p>
+    </div>
+
+</main>
+
+    <script src="script.js"></script>
+<footer>
+    dm to help me ig:- @abhinav__vinod_
+</footer>
+</body>
+</html>
