@@ -1,0 +1,60 @@
+body{
+    background:#0c6921;
+    font-family:Arial,sans-serif;
+    color:white;
+    text-align:center;
+}
+
+.pitch{
+    width:420px;
+    height:700px;
+    margin:30px auto;
+    background:#1e8f3e;
+    border:5px solid white;
+    border-radius:15px;
+    position:relative;
+}
+
+.player{
+    width:45px;
+    height:45px;
+    background:white;
+    color:black;
+    border-radius:70%;
+    position:absolute;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+}
+
+
+.lw{top:90px;left:20px;}
+.ss1{top:60px;left:110px;}
+.cf{top:40px;left:180px;}
+.ss2{top:60px;left:250px;}
+.rw{top:90px;left:340px;}
+
+
+.lmf{top:250px;left:20px;}
+.cmf1{top:350px;left:110px;}
+.amf{top:180px;left:180px;}
+.cmf2{top:350px;left:250px;}
+.rmf{top:250px;left:340px;}
+
+
+.lb{bottom:180px;left:20px;}
+.cb1{bottom:150px;left:110px;}
+.cb2{bottom:130px;left:180px;}
+.cb3{bottom:150px;left:250px;}
+.rb{bottom:180px;left:340px;}
+
+.gk{bottom:30px;left:180px;}
+
+.name{
+    background:black;
+    color:white;
+    padding:3px 8px;
+    border-radius:8px;
+    font-size:12px;
+}

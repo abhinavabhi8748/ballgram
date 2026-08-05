@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your XI - Ballgram</title>
+    <link rel="stylesheet" href="xi-builder.css">
+</head>
+<body>
+
+<button class="home-btn" onclick="window.location.href='index.html'">
+🏠 Home
+</button>
+
+<h1>⚽ Build Your Dream XI</h1>
+
+<p id="counter">Players: 0 / 11</p>
+
+<div class="pitch">
+
+    
+    <div class="player lw" onclick="addPlayer(this)">LW</div>
+    <div class="player ss1" onclick="addPlayer(this)">SS</div>
+    <div class="player cf" onclick="addPlayer(this)">CF</div>
+    <div class="player ss2" onclick="addPlayer(this)">SS</div>
+    <div class="player rw" onclick="addPlayer(this)">RW</div>
+
+    
+    <div class="player lmf" onclick="addPlayer(this)">LMF</div>
+    <div class="player cmf1" onclick="addPlayer(this)">CMF</div>
+    <div class="player amf" onclick="addPlayer(this)">AMF</div>
+    <div class="player cmf2" onclick="addPlayer(this)">CMF</div>
+    <div class="player rmf" onclick="addPlayer(this)">RMF</div>
+
+    
+    <div class="player lb" onclick="addPlayer(this)">LB</div>
+    <div class="player cb1" onclick="addPlayer(this)">CB</div>
+    <div class="player cb2" onclick="addPlayer(this)">CB</div>
+    <div class="player cb3" onclick="addPlayer(this)">CB</div>
+    <div class="player rb" onclick="addPlayer(this)">RB</div>
+
+    
+    <div class="player gk" onclick="addPlayer(this)">GK</div>
+
+</div>
+
+<button onclick="saveTeam()">Save Team</button>
+
+<script src="xi-builder.js"></script>
+</body>
+</html>
