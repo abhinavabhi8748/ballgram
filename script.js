@@ -51,3 +51,20 @@ function vote(player) {
     }
 
 }
+function tipsballgram() {
+    document.getElementById("tips").innerHTML =
+    "for mobile users use desktop mode for better experience!";
+}function toggleTips() {
+
+    let tips = document.getElementById("tips");
+    let btn = document.getElementById("tipsBtn");
+
+    if (tips.style.display === "none") {
+        tips.style.display = "block";
+        btn.innerHTML = "Hide";
+    } else {
+        tips.style.display = "none";
+        btn.innerHTML = "show";
+    }
+
+}

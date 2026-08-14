@@ -70,5 +70,5 @@ function saveTeam() {
         return;
     }
 
-    alert("Team Saved!");
+    alert("this is 1st version so if someone see this project pls contact me on instagram:abhinav__vinod_");
 }
