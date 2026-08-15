@@ -4,67 +4,187 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ballgram AI</title>
+
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
-            max-width: 700px;
-            margin: 40px auto;
+            background: #28cd41;
+            color: #0c741a;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #036803;
+            color: white;
+            text-align: center;
             padding: 20px;
         }
 
-        h1 {
-            text-align: center;
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 6px 0 0;
+            color: #ccc;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 25px auto;
+            padding: 0 15px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 15px;
+            text-decoration: none;
+            color: #111;
+            font-weight: bold;
+        }
+
+        .chat-box {
+            background: rgb(144, 202, 112);
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgb(2, 110, 22);
+            overflow: hidden;
         }
 
         #chat {
-            border: 1px solid #ccc;
-            padding: 15px;
-            min-height: 400px;
-            margin-bottom: 15px;
-            border-radius: 10px;
+            height: 600px;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .welcome {
+            text-align: center;
+            padding: 80px 20px;
+            color: #777;
+        }
+
+        .welcome h2 {
+            color: #000000;
         }
 
         .message {
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 8px;
+            max-width: 80%;
+            margin: 12px 0;
+            padding: 12px 15px;
+            border-radius: 14px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
 
         .user {
-            background: #e8f0fe;
-            text-align: right;
+            margin-left: auto;
+            background: #111;
+            color: white;
+            border-bottom-right-radius: 4px;
         }
 
         .ai {
-            background: #f1f1f1;
+            margin-right: auto;
+            background: #eef0f2;
+            color: #111;
+            border-bottom-left-radius: 4px;
         }
 
         #inputArea {
             display: flex;
             gap: 10px;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            background: #006e12;
         }
 
         #messageInput {
             flex: 1;
-            padding: 12px;
+            padding: 13px;
+            border: 1px solid #cccccc;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
         }
 
-        button {
-            padding: 12px 18px;
+        #messageInput:focus {
+            border-color: #111;
+        }
+
+        #sendButton {
+            padding: 13px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #111;
+            color: white;
             cursor: pointer;
+            font-weight: bold;
+        }
+
+        #sendButton:hover {
+            background: #333;
+        }
+
+        @media (max-width: 600px) {
+            #chat {
+                height: 60vh;
+            }
+
+            .message {
+                max-width: 90%;
+            }
+
+            #inputArea {
+                padding: 10px;
+            }
+
+            #sendButton {
+                padding: 12px 15px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <h1>⚽ Ballgram AI 🤖</h1>
+    <header>
+        <h1>⚽ Ballgram AI 🤖</h1>
+        <p>Your football assistant</p>
+    </header>
 
-    <div id="chat"></div>
+    <div class="container">
 
-    <div id="inputArea">
-        <input id="messageInput" type="text" placeholder="Ask Ballgram AI..." />
-        <button onclick="sendMessage()">Send</button>
+        <a class="back" href="index.html">← Back to Ballgram</a>
+
+        <div class="chat-box">
+
+            <div id="chat">
+                <div class="welcome">
+                    <h2>Welcome to Ballgram AI ⚽</h2>
+                    <p>Ask me anything about football.</p>
+                </div>
+            </div>
+
+            <div id="inputArea">
+                <input
+                    id="messageInput"
+                    type="text"
+                    placeholder="Ask Ballgram AI..."
+                    autocomplete="off"
+                />
+
+                <button id="sendButton" onclick="sendMessage()">
+                    Send
+                </button>
+            </div>
+
+        </div>
     </div>
 
     <script>
@@ -76,6 +196,11 @@
 
             if (!message) return;
 
+            const welcome = document.querySelector(".welcome");
+            if (welcome) {
+                welcome.remove();
+            }
+
             chat.innerHTML += `
                 <div class="message user">
                     ${message}
@@ -85,38 +210,44 @@
             input.value = "";
 
             try {
-                const response = await fetch("https://ballgram-ai.onrender.com/chat", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        message: message
-                    })
-                });
+                const response = await fetch(
+                    "https://ballgram-ai.onrender.com/chat",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            message: message
+                        })
+                    }
+                );
 
-               const reader = response.body.getReader();
-const decoder = new TextDecoder();
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
 
-let aiMessage = "";
+                let aiMessage = "";
 
-chat.innerHTML += `
-    <div class="message ai" id="currentAI">
-    </div>
-`;
+                chat.innerHTML += `
+                    <div class="message ai" id="currentAI"></div>
+                `;
 
-const aiBox = document.getElementById("currentAI");
+                const aiBox = document.getElementById("currentAI");
 
-while (true) {
-    const { value, done } = await reader.read();
+                while (true) {
+                    const { value, done } = await reader.read();
 
-    if (done) break;
+                    if (done) break;
 
-    const text = decoder.decode(value, { stream: true });
+                    const text = decoder.decode(value, { stream: true });
 
-    aiMessage += text;
-    aiBox.textContent = aiMessage;
-}
+                    aiMessage += text;
+                    aiBox.textContent = aiMessage;
+
+                    chat.scrollTop = chat.scrollHeight;
+                }
+
+                aiBox.removeAttribute("id");
 
             } catch (error) {
                 chat.innerHTML += `
@@ -126,6 +257,14 @@ while (true) {
                 `;
             }
         }
+
+        document
+            .getElementById("messageInput")
+            .addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    sendMessage();
+                }
+            });
     </script>
 
 </body>
